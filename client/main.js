@@ -4,6 +4,13 @@ const postForm = document.getElementById('postPerson')
 const nameInput = document.getElementById('nameInput')
 const powerInput = document.getElementById('powerInput')
 const myDiv = document.getElementById('results')
+const updateForm = document.getElementById('updatePerson')
+const deleteForm = document.getElementById('deletePerson')
+const list = document.getElementById('listBtn')
+
+
+
+
 
 
 const baseURL = "http://localhost:4000"
@@ -33,7 +40,52 @@ const postCharacter = (event) => {
     axios.post(`${baseURL}/api/post`, maBod)
     .then((res) => {
 
-        // console.log(res.data)
+        alert(res.data)
+       
+    })
+
+    .catch(() => {
+
+    })
+
+
+    
+    
+}
+
+
+const updateCharacter = (event) => {
+    event.preventDefault()
+    axios.get(`${baseURL}/api/update/name`)
+    // .then(res) => {
+           
+    // }
+    // .catch(() => {
+        
+    // })
+}
+
+
+
+
+const deleteCharacter = (event) => {
+    event.preventDefault()
+    axios.get(`${baseURL}/api/delete/name`)
+    // .then(res) => {
+        
+    // }
+    // .catch(() => {
+
+    // });
+}
+
+
+
+const getCharacters = (event) => {
+    event.preventDefault()
+    axios.get(`${baseURL}/api/getCharacters`)
+    .then(() => {
+
         let characters = res.data
 
         myDiv.textContent = "";
@@ -52,44 +104,16 @@ const postCharacter = (event) => {
             nameP.textContent = characters[i].name + "'s power level = " + " " + characters[i].power
             myDiv.appendChild(nameP)
         }
-    })
-
-    .catch(() => {
-
-    })
-
-
-    
-    
-}
-
-
-const updateCharacter = () => {
-    axios.get(`${baseURL}/api/update`)
-    // .then(res) => {
-           
-    // }
-    // .catch(() => {
-        
-    // })
+    }) 
 }
 
 
 
 
-const deleteCharacter = () => {
-    axios.get(`${baseURL}/api/delete/name`)
-    // .then(res) => {
-            
-    // }
-    // .catch(() => {
 
-    // })
-}
-
-const getCharacters = () => {
-    axios.get(`${baseURL}/api/getCharacters`)
-}
 
 complimentBtn.addEventListener('click', getCompliment)
 postForm.addEventListener('submit', postCharacter)
+deleteForm.addEventListener('submit', deleteCharacter)
+
+

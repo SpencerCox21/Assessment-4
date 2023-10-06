@@ -14,7 +14,7 @@ app.get("/api/get", getCompliment);
 app.post("/api/post", postCharacter);
 app.delete("/api/delete/name", deleteCharacter);
 // app.put("/api/update/name", updateCharacter);
-// app.get("api/getCharacters", getCharacters);
+// app.get("/api/getCharacters", getCharacters);
 
 
 app.listen(4000, () => console.log("Server running on 4000"));

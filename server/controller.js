@@ -26,27 +26,48 @@ module.exports = {
         dataBase.push(person)
 
         // console.log(dataBase)
-        res.status(200).send(dataBase)
+        res.status(200).send('Character has been submitted.') 
 
     },
 
     deleteCharacter: (req, res) => {
 
-        for (let i = 0; i < dataBase.length; i++){
-            let index = dataBase.findIndex(dataBase => dataBase.name === req.name)
-            dataBase.splice(index, 1)
-            res.status(200).send(dataBase)
-        }
+        dataBase.pop();
 
-    }
+        res.status(200).send(dataBase)
+
+
+
+
+        // for (let i = 0; i < dataBase.length; i++){
+        //     // let index = dataBase.findIndex(dataBase => dataBase.name === req.name)
+        //     // dataBase.splice(index, 1)
+        //     // res.status(200).send(dataBase)
+
+        //     dataBase = dataBase.filter((input) => {
+        //         return input.Name != req.value; 
+
+        //     })
+
+        //     res.status(200).send(dataBase)
+        // }
+
+    },
+
+
+
+
 
     // updateCharacter: (req, res) => {
-    //     const powerLevel = req.body
-    //     let index = dataBase.findIndex(dataBase => dataBase.id === +req.params.name)
-    //     dataBase[index].power = 
-    // }
+// assign everyone a new power level using math.floor stuff 
+    // },
 
-    // getCharacters: (req, res) => {
-    //     res.status(200).send(dataBase);
-    // }
+
+
+
+
+
+    getCharacters: (req, res) => {
+        res.status(200).send(dataBase);
+    }
 }
