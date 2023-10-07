@@ -32,25 +32,17 @@ module.exports = {
 
     deleteCharacter: (req, res) => {
 
-        dataBase.pop();
 
-        res.status(200).send(dataBase)
+        let charName  = req.params.name
+        for (let i = 0; i < users.length; i++) {
+          if (dataBase[i].name === charName) {
+            dataBase.splice(i, 1)
+            res.status(200).send(dataBase)
+            return
+          }
 
 
-
-
-        // for (let i = 0; i < dataBase.length; i++){
-        //     // let index = dataBase.findIndex(dataBase => dataBase.name === req.name)
-        //     // dataBase.splice(index, 1)
-        //     // res.status(200).send(dataBase)
-
-        //     dataBase = dataBase.filter((input) => {
-        //         return input.Name != req.value; 
-
-        //     })
-
-        //     res.status(200).send(dataBase)
-        // }
+        }
 
     },
 
@@ -58,9 +50,11 @@ module.exports = {
 
 
 
-    // updateCharacter: (req, res) => {
-// assign everyone a new power level using math.floor stuff 
-    // },
+//     updateCharacter: (req, res) => {
+// // assign everyone a new power level using math.floor stuff 
+
+// // use req.body
+//     },
 
 
 
@@ -68,6 +62,8 @@ module.exports = {
 
 
     getCharacters: (req, res) => {
+
+        
         res.status(200).send(dataBase);
     }
 }
