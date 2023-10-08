@@ -8,12 +8,12 @@ app.use(cors());
 app.use(express.json());
 
 
-const {getCompliment, postCharacter, deleteCharacter, getCharacters} = require('./controller');
+const {getCompliment, postCharacter, deleteCharacter, getCharacters, updateCharacter} = require('./controller');
 
 app.get("/api/get", getCompliment);
 app.post("/api/post", postCharacter);
 app.delete("/api/delete/:name", deleteCharacter);
-// app.put("/api/dataBase/:name", updateCharacter);
+app.put("/api/update", updateCharacter);
 app.get("/api/getChar", getCharacters);
 
 

@@ -6,7 +6,6 @@ const powerInput = document.getElementById('powerInput')
 const myDiv = document.getElementById('results')
 const updateForm = document.getElementById('updatePerson')
 const deleteForm = document.getElementById('deletePerson')
-const deleteInput = document.getElementById('deleteInput')
 const list = document.getElementById('listBtn')
 
 
@@ -59,7 +58,13 @@ const postCharacter = (event) => {
 
 const updateCharacter = (event) => {
     event.preventDefault()
-    axios.put(`${baseURL}/api/update/:power`)
+    axios.put(`${baseURL}/api/update`)
+
+    .then((res) => {
+
+        alert(res.data)
+
+    })
 
 }
 
@@ -71,9 +76,8 @@ const deleteCharacter = (event) => {
     axios.delete(`${baseURL}/api/delete/:name`)
     .then((res) => {
 
-        let characters = res.data
 
-        alert(characters)
+        alert(res.data)
        
     })
 
@@ -93,11 +97,11 @@ const getCharacters = () => {
 
         for (let i = 0; i < characters.length; i++) {
             let nameP = document.createElement('p')
-            nameP.textContent = characters[i].name + " " + characters[i].power
+            nameP.textContent = characters[i].name + " has a power level of " + characters[i].power
             myDiv.appendChild(nameP)
         }
 
-        }) 
+    }) 
 }
 
 
@@ -109,8 +113,8 @@ const getCharacters = () => {
 
 complimentBtn.addEventListener('click', getCompliment)
 postForm.addEventListener('submit', postCharacter)
+updateForm.addEventListener('submit', updateCharacter)
 deleteForm.addEventListener('submit', deleteCharacter)
-// updateForm.addEventListener('click', updateCharacter)
 list.addEventListener('click', getCharacters)
 
 

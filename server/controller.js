@@ -25,24 +25,21 @@ module.exports = {
 
         dataBase.push(person)
 
-        // console.log(dataBase)
         res.status(200).send('Character has been submitted.') 
 
     },
 
+
+
     deleteCharacter: (req, res) => {
 
 
-        let charName  = req.params.name
-        for (let i = 0; i < users.length; i++) {
-          if (dataBase[i].name === charName) {
-            dataBase.splice(i, 1)
-            res.status(200).send(dataBase)
-            return
-          }
+        let index = dataBase.findIndex(dataBase => dataBase.name === req.params.name);
 
+        dataBase.splice(index, 1)
 
-        }
+        res.status(200).send("Character has been deleted, click the 'List' button to refresh the list.")
+
 
     },
 
@@ -50,11 +47,21 @@ module.exports = {
 
 
 
-//     updateCharacter: (req, res) => {
-// // assign everyone a new power level using math.floor stuff 
+    updateCharacter: (req, res) => {
 
-// // use req.body
-//     },
+
+        for (let i = 0; i < dataBase.length; i++) {
+
+            let newPower = Math.floor(Math.random() * 10000) 
+
+            dataBase[i].power = newPower;
+        }
+
+
+        res.status(200).send("All characters have recieved a new power level, click the 'List' button to see the results.")
+
+
+    },
 
 
 
@@ -63,7 +70,6 @@ module.exports = {
 
     getCharacters: (req, res) => {
 
-        
         res.status(200).send(dataBase);
     }
 }
